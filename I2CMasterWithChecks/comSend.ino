@@ -20,7 +20,9 @@ void commandSelector(){
   else if (x=="IOff"){
     transmitI2C(4,1,WRITE);
   }
-
+  else if (x=="CheckDead"){
+    comboBreaker();
+  }
   
 }    
   

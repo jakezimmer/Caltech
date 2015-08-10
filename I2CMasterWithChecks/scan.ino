@@ -1,3 +1,5 @@
+
+//checks status of a node
 int scanStatus(uint8_t target)
 {
     switch(Wire.status())
@@ -14,6 +16,7 @@ int scanStatus(uint8_t target)
     return 2;
 }
 
+//scans all nodes to see if any have died.
 void comboBreaker(){
 
   for(uint8_t target = 1; target <= 5; target++){
@@ -21,6 +24,8 @@ void comboBreaker(){
     Wire.endTransmission();               // no data, just addr
     if (scanStatus(target)==1){
       digitalWrite(target, HIGH);
+      Wire.resetBus();
     }
+    
   }
 }

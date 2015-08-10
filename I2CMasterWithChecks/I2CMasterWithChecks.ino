@@ -5,7 +5,7 @@
 #define SETRATE  0x30
 
 String input;
-int x[16];
+int sensorsTotal[16];
 
 void setup() {
   Serial.begin(115200);
