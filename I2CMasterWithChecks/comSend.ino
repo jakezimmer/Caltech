@@ -1,5 +1,6 @@
-void transmitI2C(uint8_t spot, uint8_t cmd){
+void transmitI2C(uint8_t spot, uint8_t cmd, uint8_t type){
   Wire.beginTransmission(spot);
+  Wire.write(type);
   Wire.write(0x00);
   Wire.write(cmd);
   Wire.endTransmission();
@@ -8,30 +9,18 @@ void transmitI2C(uint8_t spot, uint8_t cmd){
 void commandSelector(){
   String x = getCommand();
   if (x=="COff"){
-    transmitI2C(1,1);
-  }
-  else if (x=="CSense"){
-    transmitI2C(1,2);
+    transmitI2C(1,1,WRITE);
   }
   else if (x=="ROff"){
-    transmitI2C(2,1);
-  }
-  else if (x=="RSense"){
-    transmitI2C(2,2);
+    transmitI2C(2,1,WRITE);
   }
   else if (x=="GOff"){
-    transmitI2C(3,1);
-  }
-  else if (x=="GSense"){
-    transmitI2C(3,2);
+    transmitI2C(3,1,WRITE);
   }
   else if (x=="IOff"){
-    transmitI2C(4,1);
+    transmitI2C(4,1,WRITE);
   }
-  else if (x=="ISense"){
-    transmitI2C(4,2);
-  }
-  
+
   
 }    
   
