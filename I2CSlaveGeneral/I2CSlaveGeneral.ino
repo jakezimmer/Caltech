@@ -1,5 +1,5 @@
 #include <i2c_t3.h>
-#include <TimerOne.h>
+
 
 #define WRITE    0x10
 #define READ     0x20
@@ -10,14 +10,31 @@ uint8_t sensorsTotal[4];
 uint8_t cmd;
 size_t addr;
 
+const uint32_t FREQ = 30000;
+
 
 void setup() {
   delay(500);
   
-  Timer1.initialize(6);
-  phil();
-  Timer1.start();
-  Timer1.pwm(4, 700);
+  phil(); //fills ADC sample bank
+
+  pinMode(3, OUTPUT);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+
+  analogWriteResolution(8);
+
+  analogWriteFrequency(3, FREQ);
+  analogWriteFrequency(4, FREQ);
+  analogWriteFrequency(5, FREQ);
+  analogWriteFrequency(6, FREQ);
+
+  adc->setAveraging(1); // set number of averages
+  adc->setResolution(8);
+  adc->setConversionSpeed(ADC_HIGH_SPEED); // change the conversion speed
+    // it can be ADC_VERY_LOW_SPEED, ADC_LOW_SPEED, ADC_MED_SPEED, ADC_HIGH_SPEED or ADC_VERY_HIGH_SPEED
+  adc->setSamplingSpeed(ADC_HIGH_SPEED); // change the sampling speed
   
   // Setup for Slave mode, address 0x44, pins 18/19, external pullups, 400kHz
   // Each slave must have its own address, designate in hex.

@@ -3,8 +3,9 @@ int section[100];
 int temp;
 int wSPlace=0;
 
+
 void phil(){
-  filler(wholeSample,500);
+  filler(wholeSample,500); //needed to call filler because of scope
 }
 
 void filler(int y[], int x){
@@ -31,15 +32,16 @@ int greatest(int y[]){
   return big;
 }
 
-void contacted(){
+int contacted(short pin){
   int k=0;
-  
+  int last;
+  analogWrite(pin, 127);
   for (int i=0; i<100000;i++){
-    Timer1.setPeriod(25);
-    Timer1.pwm(4, 100);
+    //Timer1.setPeriod(25);
+    //Timer1.pwm(4, 100);
     //delay(1);
-    Timer1.restart();
-    delayMicroseconds(5);
+    //Timer1.restart();
+    //delayMicroseconds(5);
     section[k]=analogRead(18);
     
     if ((i+1)%100==0){
@@ -58,24 +60,18 @@ void contacted(){
       
     }
     if (i%10000==0){
-      Serial.begin(115200);
-      //Serial.println(0+map(avg(wholeSample),6600,7000,0,100));
-      Serial.println(avg(wholeSample));
-      //Serial.println(i);
-      //Serial.println(analogRead(22));
-      //Serial.println(greatest(section));
-      //Serial.println("");
-      Serial.end();
-      Timer1.stop();
+      last=avg(wholeSample);
+      //Timer1.stop();
       //digitalWrite(13, LOW);
       //delay(100);
       //digitalWrite(13, HIGH);
       wSPlace=0;
       
-      Timer1.resume();
+      //Timer1.resume();
     }
     //delayMicroseconds(50);
     k++;
   }
-  
+  analogWrite(pin, 0);
+  return last;
 }

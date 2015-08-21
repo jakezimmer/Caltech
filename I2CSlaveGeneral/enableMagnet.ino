@@ -8,7 +8,10 @@ void enableMagnet(int time){
 void eMagnet(int time){
   //if (analogRead(22) > 533 || wasCalled==true){
     wasCalled=false;
-    Timer1.pwm(4, 0);
+    analogWrite(3, 255);
+    analogWrite(4, 255);
+    analogWrite(5, 255);
+    analogWrite(6, 255);
     digitalWrite(16, HIGH);
     //for(int i=0; i<time*10; i++){
       //Serial.println(analogRead(22));
@@ -23,7 +26,10 @@ void eMagnet(int time){
 }
 void disableMagnet(){
   digitalWrite(16, LOW);
-  Timer1.pwm(4, 1023);
+  analogWrite(3, 0);
+  analogWrite(4, 0);
+  analogWrite(4, 0);
+  analogWrite(4, 0);
   if (analogRead(22) > 530 && wasCalled==true){
     eMagnet(times);
   }
