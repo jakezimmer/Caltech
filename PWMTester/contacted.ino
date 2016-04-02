@@ -36,7 +36,7 @@ int greatest(int y[]){
 
 void contacted(){
   int k=0;
-  analogWriteFrequency(3, 30000);
+  analogWriteFrequency(3, 40000);
   analogWrite(3, 127);
   //Timer1.pwm(3, 512, 33);
     //delay(1);

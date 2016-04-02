@@ -35,12 +35,12 @@ void contacted(){
   int k=0;
   
   for (int i=0; i<100000;i++){
-    Timer1.setPeriod(25);
+    Timer1.setPeriod(100);
     Timer1.pwm(3, 100);
     //delay(1);
     Timer1.restart();
     delayMicroseconds(5);
-    //section[k]=analogRead(A9);
+    section[k]=analogRead(A9);
     
     if ((i+1)%100==0){
       wholeSample[i/100]=greatest(section);
@@ -60,9 +60,9 @@ void contacted(){
     if (i%10000==0){
       Serial.begin(115200);
       //Serial.println(0+map(avg(wholeSample),6600,7000,0,100));
-      Serial.println(100-(avg(wholeSample)-80));
+      //Serial.println(100-(avg(wholeSample)-80));
       //Serial.println(i);
-      //Serial.println(analogRead(22));
+      Serial.println(analogRead(23));
       //Serial.println(greatest(section));
       //Serial.println("");
       Serial.end();

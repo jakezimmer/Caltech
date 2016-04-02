@@ -2,7 +2,7 @@
 #include <ADC.h>
 
 const int readPin = A9;
-//const int readPin2 = A3;
+//const int readPin = 23;
 
 ADC *adc = new ADC();
 
@@ -24,6 +24,7 @@ void setup(){
   pinMode(13,OUTPUT);
   digitalWrite(13,HIGH);
   pinMode(14, INPUT_PULLUP);  
+    pinMode(23, INPUT);  
   pinMode(16,OUTPUT);
   
   delay(50);
