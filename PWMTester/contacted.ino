@@ -4,10 +4,10 @@ int section[100];
 int section2[100];
 int temp;
 int wSPlace=0;
-ADC::Sync_result result;
+//ADC::Sync_result result;
 
 void phil(){
-  filler(wholeSample,500);
+  filler(wholeSample,130);
 }
 
 void filler(int y[], int x){
@@ -36,25 +36,25 @@ int greatest(int y[]){
 
 void contacted(){
   int k=0;
-  analogWriteFrequency(3, 40000);
-  analogWrite(3, 127);
-  //Timer1.pwm(3, 512, 33);
+//  analogWriteFrequency(3, 250000);
+//  analogWrite(3, 127);
+  Timer1.pwm(3, 512, 8);
     //delay(1);
-  //Timer1.restart();
+  Timer1.restart();
   for (int i=0; i<100000;i++){
     //Timer1.setPeriod(50);
-    //Timer1.restart();
-    delayMicroseconds(2);
-    result = adc->readSynchronizedContinuous();
-    result.result_adc0 = (uint16_t)result.result_adc0;
-    result.result_adc1 = (uint16_t)result.result_adc1;
-    section[k]=result.result_adc0;
-    section2[k]=result.result_adc1;
+    Timer1.restart();
+    delayMicroseconds(10);
+//    result = adc->readSynchronizedContinuous();
+//    result.result_adc0 = (uint16_t)result.result_adc0;
+//    result.result_adc1 = (uint16_t)result.result_adc1;
+    section[k]=adc->analogRead(23);
+//    section2[k]=result.result_adc1;
     
     //delayMicroseconds(15);
     if ((i+1)%100==0){
-      wholeSample[i/100]=greatest(section);
-      wholeSample2[i/100]=greatest(section2);
+      wholeSample[i/100]=avg(section);
+      wholeSample2[i/100]=avg(section2);
       wSPlace++;
       /*Serial.begin(115200);
       Serial.println(avg(wholeSample));

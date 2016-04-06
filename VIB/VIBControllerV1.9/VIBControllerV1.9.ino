@@ -1,19 +1,4 @@
-//#include <Dhcp.h>
-//#include <Dns.h>
-//#include <Ethernet.h>
-//#include <EthernetClient.h>
-//#include <EthernetServer.h>
-//#include <EthernetUdp.h>
 
-//#include<Ethernet.h>
-
-//#include <DhcpV2_0.h>
-//#include <DnsV2_0.h>
-//#include <EthernetClientV2_0.h>
-//#include <EthernetServerV2_0.h>
-//#include <EthernetUdpV2_0.h>
-//#include <EthernetV2_0.h>
-//#include <utilV2_0.h>
 
 /***************************************************
    In this version, ethernet as client is being added
